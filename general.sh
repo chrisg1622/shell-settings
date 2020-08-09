@@ -7,7 +7,7 @@
 # source ${SETTINGS_DIR}/general.sh
 
 echo 'Loading core settings... type "settings" to view these in sublime'
-# set this variable to store the directory of any projects
+# Set this variable to store the root of your projects.
 export BASE_DIR=/Users/cgeorge/ChrisGeorge/Projects
 export ENV_DIR=${BASE_DIR}/.venvs
 
