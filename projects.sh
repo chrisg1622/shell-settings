@@ -18,13 +18,15 @@ new_project() {
         echo "Creating new venv at ${ENV}"
         python -m venv ${ENV}
         # install requirements if the file exists within the project's root directory
-        REQUIREMENTS=${BASE_DIR}/${PROJECT_NAME}
+        REQUIREMENTS=${BASE_DIR}/${PROJECT_NAME}/requirements.txt
         if [[ -f "$REQUIREMENTS" ]]; then
             echo "installing requirements from ${REQUIREMENTS}"
             source ${ENV}/bin/activate
             pip install --upgrade pip
             pip install -r ${REQUIREMENTS}
             deactivate
+        else
+            echo "Could not find requirements at ${REQUIREMENTS}"
         fi
     fi
 }
