@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 new_project() {
     PROJECT_NAME=$1
     # create settings file
@@ -7,28 +8,11 @@ new_project() {
     if [[ -f "$FILE_NAME" ]]; then
         echo "${PROJECT_NAME} already exists. Delete ${FILE_NAME} and try again"
     else
-        ${SETTINGS_DIR}/projects/project_template.sh ${PROJECT_NAME} > ${FILE_NAME}
+        ${SETTINGS_DIR}/project_template.sh ${PROJECT_NAME} > ${FILE_NAME}
         echo "Successfully created ${PROJECT_NAME} project at ${FILE_NAME}"
     fi
     # create venv if it doesn't exist
-    ENV=${ENV_DIR}/.${PROJECT_NAME}
-    if [[ -d "$ENV" ]]; then
-        echo "${PROJECT_NAME} venv already exists. Delete ${ENV} and try again"
-    else
-        echo "Creating new venv at ${ENV}"
-        python -m venv ${ENV}
-        # install requirements if the file exists within the project's root directory
-        REQUIREMENTS=${BASE_DIR}/${PROJECT_NAME}/requirements.txt
-        if [[ -f "$REQUIREMENTS" ]]; then
-            echo "installing requirements from ${REQUIREMENTS}"
-            source ${ENV}/bin/activate
-            pip install --upgrade pip
-            pip install -r ${REQUIREMENTS}
-            deactivate
-        else
-            echo "Could not find requirements at ${REQUIREMENTS}"
-        fi
-    fi
+    create_python_env ${PROJECT_NAME}
 }
 start_project() {
     PROJECT_NAME=$1
