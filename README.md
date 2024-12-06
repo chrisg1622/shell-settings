@@ -13,6 +13,13 @@ Project specific settings files are used to store environment variables and help
 
 ## Setup 
 
+Install Homebrew.
+
+Install pyenv:
+```
+brew install pyenv
+```
+
 Clone this repository, then in your .bash_profile copy the following (replace <PATH_TO_REPO> with the path to the cloned repository). This will run `general.sh`, which in turn sources all other settings files.
 
 ```
